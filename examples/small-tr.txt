@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VOTABLE version="1.3">
+<RESOURCE type="results">
+<FIELD datatype="int" name="recno" ucd="meta.record">
+<DESCRIPTION>Record number assigned by the VizieR team. Should Not be used for identification.</DESCRIPTION>
+</FIELD>
+<DATA>
+<TABLEDATA>
+  <TR>
+    <TD>1972</TD>
+  </TR>
+</TABLEDATA>
+</DATA>
+</TABLE>
+</RESOURCE>
+</VOTABLE>

@@ -1,0 +1,1659 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VOTABLE version="1.3" xmlns="http://www.ivoa.net/xml/VOTable/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://www.ivoa.net/xml/VOTable/v1.3">
+<RESOURCE type="results">
+<INFO name="QUERY_STATUS" value="OK"/>
+<INFO name="PROVIDER" value="CDS">TAPVizieR</INFO>
+<INFO name="QUERY" value='SELECT TOP 100 III_spectro."III/10B/catalog".recno , III_spectro."III/10B/catalog".f_NGP , III_spectro."III/10B/catalog".NGP , III_spectro."III/10B/catalog".n_NGP , III_spectro."III/10B/catalog".HD , III_spectro."III/10B/catalog".Bmag , III_spectro."III/10B/catalog".Reg , III_spectro."III/10B/catalog".RAJ2000 , III_spectro."III/10B/catalog".DEJ2000 , III_spectro."III/10B/catalog".s , III_spectro."III/10B/catalog".BD , III_spectro."III/10B/catalog".Vmag , III_spectro."III/10B/catalog".SpT , III_spectro."III/10B/catalog".Notes
+ FROM  III_spectro."III/10B/catalog"
+'/>
+<COOSYS ID="coosys_c3010c" system="FK5" equinox="2000.0" />
+<TABLE name="result_S1654441892576">
+<FIELD datatype="int" name="recno" ucd="meta.record">
+<DESCRIPTION>Record number assigned by the VizieR team. Should Not be used for identification.</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="1" datatype="char" name="f_NGP" ucd="meta.code">
+<DESCRIPTION>[e] 'e' when the star is subject to an erratum</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="NGP" ucd="meta.id;meta.main">
+<DESCRIPTION>NGP designation (G1)</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="1" datatype="char" name="n_NGP" ucd="meta.note">
+<DESCRIPTION>[*] Note flag (asterisk), details in &amp;quot;notes.dat&amp;quot;</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="HD" ucd="meta.id">
+<DESCRIPTION>? HD number</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="Bmag" ucd="phot.mag;em.opt.B" unit="mag">
+<DESCRIPTION>? Blue magnitude</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="1" datatype="char" name="Reg" ucd="obs.field">
+<DESCRIPTION>Subregion and identification chart</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="RAJ2000" ref="coosys_c3010c" ucd="pos.eq.ra;meta.main" unit="deg">
+<DESCRIPTION>Right Ascension J2000</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="DEJ2000" ref="coosys_c3010c" ucd="pos.eq.dec;meta.main" unit="deg">
+<DESCRIPTION>Declination J2000</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="1" datatype="char" name="s" ucd="meta.ref;pos.frame">
+<DESCRIPTION>Source of position (2)</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="BD" ucd="meta.id">
+<DESCRIPTION>Bonner Durchmusterung identification (I/122)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="Vmag" ucd="phot.mag;em.opt.V" unit="mag">
+<DESCRIPTION>V-band magnitude</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SpT" ucd="src.spType">
+<DESCRIPTION>MK spectral class (colons for uncertainty)</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="Notes" ucd="meta.note">
+<DESCRIPTION>Remarks from B. Skiff</DESCRIPTION>
+</FIELD>
+<DATA>
+<TABLEDATA>
+  <TR>
+    <TD>1972</TD>
+    <TD> </TD>
+    <TD>38   2</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.1</TD>
+    <TD>G</TD>
+    <TD>175.56741666666665</TD>
+    <TD>37.23224999999999</TD>
+    <TD>U</TD>
+    <TD>+38 2270 </TD>
+    <TD>10.6</TD>
+    <TD>G6V:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>1971</TD>
+    <TD> </TD>
+    <TD>38   1</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>10.8</TD>
+    <TD>G</TD>
+    <TD>175.50224999999998</TD>
+    <TD>37.35044444444444</TD>
+    <TD>U</TD>
+    <TD>+38 2268 </TD>
+    <TD>9.3</TD>
+    <TD>K1III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>1977</TD>
+    <TD> </TD>
+    <TD>38   7</TD>
+    <TD> </TD>
+    <TD>101979</TD>
+    <TD>10.6</TD>
+    <TD>G</TD>
+    <TD>176.08466666666664</TD>
+    <TD>37.52858333333333</TD>
+    <TD>U</TD>
+    <TD>+38 2273 </TD>
+    <TD>9.2</TD>
+    <TD>K0III</TD>
+    <TD>HD 101979</TD>
+  </TR>
+  <TR>
+    <TD>1978</TD>
+    <TD> </TD>
+    <TD>38   8</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.6</TD>
+    <TD>G</TD>
+    <TD>176.24229166666663</TD>
+    <TD>37.73866666666666</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.9</TD>
+    <TD>G6:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>1973</TD>
+    <TD> </TD>
+    <TD>38   3</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.9</TD>
+    <TD>G</TD>
+    <TD>175.64062499999997</TD>
+    <TD>37.91494444444444</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.7</TD>
+    <TD>G8III:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>1976</TD>
+    <TD> </TD>
+    <TD>38   6</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.1</TD>
+    <TD>G</TD>
+    <TD>175.917625</TD>
+    <TD>38.112222222222215</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.3</TD>
+    <TD>G6</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2154</TD>
+    <TD> </TD>
+    <TD>39   3</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.3</TD>
+    <TD>G</TD>
+    <TD>175.8123333333333</TD>
+    <TD>38.197444444444436</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.2</TD>
+    <TD>K0III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2159</TD>
+    <TD> </TD>
+    <TD>39   8</TD>
+    <TD> </TD>
+    <TD>102079</TD>
+    <TD>10.5</TD>
+    <TD>G</TD>
+    <TD>176.27262499999998</TD>
+    <TD>38.328222222222216</TD>
+    <TD>U</TD>
+    <TD>+39 2467 </TD>
+    <TD>9.3</TD>
+    <TD>G5V</TD>
+    <TD>HD 102079</TD>
+  </TR>
+  <TR>
+    <TD>2160</TD>
+    <TD> </TD>
+    <TD>39   9</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.1</TD>
+    <TD>G</TD>
+    <TD>176.6980833333333</TD>
+    <TD>38.819333333333326</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.7</TD>
+    <TD>G6</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2161</TD>
+    <TD> </TD>
+    <TD>39  10</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.9</TD>
+    <TD>G</TD>
+    <TD>176.7965833333333</TD>
+    <TD>38.73905555555555</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.9</TD>
+    <TD>G6</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2162</TD>
+    <TD> </TD>
+    <TD>39  11</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.9</TD>
+    <TD>G</TD>
+    <TD>176.8135833333333</TD>
+    <TD>38.8661111111111</TD>
+    <TD>U</TD>
+    <TD>+39 2468 </TD>
+    <TD>10.6</TD>
+    <TD>G8III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2158</TD>
+    <TD> </TD>
+    <TD>39   7</TD>
+    <TD> </TD>
+    <TD>101978</TD>
+    <TD>9.3</TD>
+    <TD>G</TD>
+    <TD>176.08424999999997</TD>
+    <TD>38.52763888888888</TD>
+    <TD>T</TD>
+    <TD>+39 2466 </TD>
+    <TD>7.9</TD>
+    <TD>K2IV</TD>
+    <TD>giant, not subgiant; HD 101978</TD>
+  </TR>
+  <TR>
+    <TD>2340</TD>
+    <TD> </TD>
+    <TD>40  21</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>10.8</TD>
+    <TD>J</TD>
+    <TD>176.58424999999997</TD>
+    <TD>39.327527777777775</TD>
+    <TD>U</TD>
+    <TD>+40 2464 </TD>
+    <TD>10.1</TD>
+    <TD>G5III:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2336</TD>
+    <TD> </TD>
+    <TD>40  17</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.9</TD>
+    <TD>J</TD>
+    <TD>176.40916666666664</TD>
+    <TD>39.207833333333326</TD>
+    <TD>U</TD>
+    <TD>+40 2460 </TD>
+    <TD>10.5</TD>
+    <TD>K0III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2338</TD>
+    <TD> </TD>
+    <TD>40  19</TD>
+    <TD> </TD>
+    <TD>102226</TD>
+    <TD>9.4</TD>
+    <TD>J</TD>
+    <TD>176.49308333333332</TD>
+    <TD>39.395222222222216</TD>
+    <TD>T</TD>
+    <TD>+40 2461 </TD>
+    <TD>8.0</TD>
+    <TD>K2III</TD>
+    <TD>HD 102226 = IRAS F11433+3940</TD>
+  </TR>
+  <TR>
+    <TD>2152</TD>
+    <TD> </TD>
+    <TD>39   1</TD>
+    <TD>*</TD>
+    <TD>101605</TD>
+    <TD></TD>
+    <TD>G</TD>
+    <TD>175.4177083333333</TD>
+    <TD>38.47480555555555</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>10.0</TD>
+    <TD>M5:</TD>
+    <TD>HD 101605</TD>
+  </TR>
+  <TR>
+    <TD>2155</TD>
+    <TD> </TD>
+    <TD>39   4</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.9</TD>
+    <TD>G</TD>
+    <TD>175.82716666666664</TD>
+    <TD>38.933249999999994</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.4</TD>
+    <TD>K0</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2157</TD>
+    <TD> </TD>
+    <TD>39   6</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.6</TD>
+    <TD>G</TD>
+    <TD>175.95912499999997</TD>
+    <TD>38.99419444444444</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.6</TD>
+    <TD>G8III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2156</TD>
+    <TD> </TD>
+    <TD>39   5</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.1</TD>
+    <TD>G</TD>
+    <TD>175.91791666666666</TD>
+    <TD>39.01958333333333</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.3</TD>
+    <TD>K0III:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2153</TD>
+    <TD> </TD>
+    <TD>39   2</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.1</TD>
+    <TD>G</TD>
+    <TD>175.7268333333333</TD>
+    <TD>39.13077777777777</TD>
+    <TD>U</TD>
+    <TD>+39 2464 </TD>
+    <TD>10.2</TD>
+    <TD>G6</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2334</TD>
+    <TD> </TD>
+    <TD>40  15</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.1</TD>
+    <TD>J</TD>
+    <TD>176.06145833333332</TD>
+    <TD>39.31808333333333</TD>
+    <TD>U</TD>
+    <TD>+40 2458 </TD>
+    <TD>12.3</TD>
+    <TD>G8III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2328</TD>
+    <TD> </TD>
+    <TD>40   9</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.3</TD>
+    <TD>J</TD>
+    <TD>175.60116666666664</TD>
+    <TD>39.56452777777777</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>10.7</TD>
+    <TD>K0</TD>
+    <TD>SWrn of 65" cpm pair, dwarf</TD>
+  </TR>
+  <TR>
+    <TD>2329</TD>
+    <TD> </TD>
+    <TD>40  10</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>10.8</TD>
+    <TD>J</TD>
+    <TD>175.61012499999998</TD>
+    <TD>39.581083333333325</TD>
+    <TD>U</TD>
+    <TD>+40 2453 </TD>
+    <TD>9.9</TD>
+    <TD>G6III</TD>
+    <TD>NErn of 65" cpm pair; dwarf, not giant</TD>
+  </TR>
+  <TR>
+    <TD>2327</TD>
+    <TD> </TD>
+    <TD>40   8</TD>
+    <TD> </TD>
+    <TD>101675</TD>
+    <TD>9.9</TD>
+    <TD>J</TD>
+    <TD>175.5572083333333</TD>
+    <TD>39.659638888888885</TD>
+    <TD>U</TD>
+    <TD>+40 2451 </TD>
+    <TD>8.8</TD>
+    <TD>G5III:</TD>
+    <TD>NWrn of 12" cpm pair, HD 101675</TD>
+  </TR>
+  <TR>
+    <TD>2330</TD>
+    <TD> </TD>
+    <TD>40  11</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.2</TD>
+    <TD>J</TD>
+    <TD>175.66116666666665</TD>
+    <TD>39.667027777777776</TD>
+    <TD>U</TD>
+    <TD>+40 2454 </TD>
+    <TD>10.0</TD>
+    <TD>G7III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2331</TD>
+    <TD> </TD>
+    <TD>40  12</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.6</TD>
+    <TD>J</TD>
+    <TD>175.81716666666665</TD>
+    <TD>39.985611111111105</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>10.9</TD>
+    <TD>G8III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2321</TD>
+    <TD> </TD>
+    <TD>40   2</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>10.6</TD>
+    <TD>J</TD>
+    <TD>174.51949999999997</TD>
+    <TD>39.555861111111106</TD>
+    <TD>U</TD>
+    <TD>+40 2445 </TD>
+    <TD>9.9</TD>
+    <TD>G5</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2322</TD>
+    <TD> </TD>
+    <TD>40   3</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.5</TD>
+    <TD>J</TD>
+    <TD>174.56954166666665</TD>
+    <TD>39.95175</TD>
+    <TD>U</TD>
+    <TD>+40 2446 </TD>
+    <TD>10.6</TD>
+    <TD>G7III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2320</TD>
+    <TD> </TD>
+    <TD>40   1</TD>
+    <TD> </TD>
+    <TD>101014</TD>
+    <TD>10.3</TD>
+    <TD>J</TD>
+    <TD>174.4374583333333</TD>
+    <TD>40.14516666666666</TD>
+    <TD>U</TD>
+    <TD>+40 2444 </TD>
+    <TD>9.4</TD>
+    <TD>G6III:</TD>
+    <TD>HD 101014</TD>
+  </TR>
+  <TR>
+    <TD>2324</TD>
+    <TD> </TD>
+    <TD>40   5</TD>
+    <TD>*</TD>
+    <TD></TD>
+    <TD>11.6</TD>
+    <TD>J</TD>
+    <TD>175.0817083333333</TD>
+    <TD>39.790166666666664</TD>
+    <TD>U</TD>
+    <TD>+40 2449 </TD>
+    <TD>10.3</TD>
+    <TD>K1III</TD>
+    <TD>CN strong</TD>
+  </TR>
+  <TR>
+    <TD>2323</TD>
+    <TD> </TD>
+    <TD>40   4</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.5</TD>
+    <TD>J</TD>
+    <TD>174.84395833333332</TD>
+    <TD>39.90747222222222</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.8</TD>
+    <TD>G8III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2325</TD>
+    <TD> </TD>
+    <TD>40   6</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.3</TD>
+    <TD>J</TD>
+    <TD>175.2174583333333</TD>
+    <TD>40.07019444444444</TD>
+    <TD>U</TD>
+    <TD>+40 2450 </TD>
+    <TD>10.1</TD>
+    <TD>G9III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2326</TD>
+    <TD> </TD>
+    <TD>40   7</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.6</TD>
+    <TD>J</TD>
+    <TD>175.27874999999997</TD>
+    <TD>40.00552777777777</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>12.6</TD>
+    <TD>G7:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2507</TD>
+    <TD> </TD>
+    <TD>41   5</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>10.3</TD>
+    <TD>J</TD>
+    <TD>174.96691666666663</TD>
+    <TD>40.40913888888888</TD>
+    <TD>U</TD>
+    <TD>+41 2221 </TD>
+    <TD>9.8</TD>
+    <TD>G6III:</TD>
+    <TD>dwarf, not giant</TD>
+  </TR>
+  <TR>
+    <TD>2506</TD>
+    <TD> </TD>
+    <TD>41   4</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.9</TD>
+    <TD>J</TD>
+    <TD>174.9423333333333</TD>
+    <TD>40.457361111111105</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.1</TD>
+    <TD>G6</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2510</TD>
+    <TD> </TD>
+    <TD>41   8</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.5</TD>
+    <TD>J</TD>
+    <TD>175.27329166666664</TD>
+    <TD>40.58427777777777</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.7</TD>
+    <TD>G8III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2503</TD>
+    <TD> </TD>
+    <TD>41   1</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>10.3</TD>
+    <TD>J</TD>
+    <TD>174.62041666666664</TD>
+    <TD>40.713583333333325</TD>
+    <TD>U</TD>
+    <TD>+41 2216 </TD>
+    <TD>9.9</TD>
+    <TD>G5III:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2505</TD>
+    <TD> </TD>
+    <TD>41   3</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>10.6</TD>
+    <TD>J</TD>
+    <TD>174.77308333333332</TD>
+    <TD>40.693</TD>
+    <TD>U</TD>
+    <TD>+41 2220 </TD>
+    <TD>10.0</TD>
+    <TD>G7IV</TD>
+    <TD>SWrn of 11" cpm pair</TD>
+  </TR>
+  <TR>
+    <TD>2504</TD>
+    <TD> </TD>
+    <TD>41   2</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>10.3</TD>
+    <TD>J</TD>
+    <TD>174.71879166666665</TD>
+    <TD>41.06952777777777</TD>
+    <TD>U</TD>
+    <TD>+41 2217 </TD>
+    <TD>9.2</TD>
+    <TD>G8III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2347</TD>
+    <TD> </TD>
+    <TD>40  28</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.9</TD>
+    <TD>J</TD>
+    <TD>177.2699583333333</TD>
+    <TD>39.25816666666666</TD>
+    <TD>U</TD>
+    <TD>+40 2469 </TD>
+    <TD>11.3</TD>
+    <TD>G6</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2346</TD>
+    <TD> </TD>
+    <TD>40  27</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.9</TD>
+    <TD>J</TD>
+    <TD>177.13025</TD>
+    <TD>39.29208333333333</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>12.1</TD>
+    <TD>G8</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2351</TD>
+    <TD> </TD>
+    <TD>40  32</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.3</TD>
+    <TD>J</TD>
+    <TD>177.49216666666663</TD>
+    <TD>39.272499999999994</TD>
+    <TD>U</TD>
+    <TD>+40 2470 </TD>
+    <TD>12.3</TD>
+    <TD>K3III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2343</TD>
+    <TD> </TD>
+    <TD>40  24</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>10.7</TD>
+    <TD>J</TD>
+    <TD>176.75462499999998</TD>
+    <TD>39.51863888888888</TD>
+    <TD>U</TD>
+    <TD>+40 2466 </TD>
+    <TD>9.4</TD>
+    <TD>K0III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2339</TD>
+    <TD> </TD>
+    <TD>40  20</TD>
+    <TD> </TD>
+    <TD>102242</TD>
+    <TD>9.7</TD>
+    <TD>J</TD>
+    <TD>176.53991666666664</TD>
+    <TD>39.40149999999999</TD>
+    <TD>U</TD>
+    <TD>+40 2463 </TD>
+    <TD>8.6</TD>
+    <TD>G7III</TD>
+    <TD>HD 102242 = IRAS Z11435+3940</TD>
+  </TR>
+  <TR>
+    <TD>2350</TD>
+    <TD> </TD>
+    <TD>40  31</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.6</TD>
+    <TD>J</TD>
+    <TD>177.37874999999997</TD>
+    <TD>39.821999999999996</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>12.2</TD>
+    <TD>G8III:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2349</TD>
+    <TD> </TD>
+    <TD>40  30</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.9</TD>
+    <TD>J</TD>
+    <TD>177.30454166666664</TD>
+    <TD>39.783138888888885</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>12.0</TD>
+    <TD>G9III:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2348</TD>
+    <TD> </TD>
+    <TD>40  29</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.6</TD>
+    <TD>J</TD>
+    <TD>177.28637499999996</TD>
+    <TD>39.86002777777777</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>12.7</TD>
+    <TD>G8</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2353</TD>
+    <TD> </TD>
+    <TD>40  34</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.9</TD>
+    <TD>J</TD>
+    <TD>177.8095833333333</TD>
+    <TD>39.643583333333325</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>10.9</TD>
+    <TD>G9III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2352</TD>
+    <TD> </TD>
+    <TD>40  33</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.4</TD>
+    <TD>J</TD>
+    <TD>177.5749583333333</TD>
+    <TD>39.81838888888888</TD>
+    <TD>U</TD>
+    <TD>+40 2471 </TD>
+    <TD>10.2</TD>
+    <TD>K0III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2357</TD>
+    <TD> </TD>
+    <TD>40  38</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.6</TD>
+    <TD>J</TD>
+    <TD>178.2640833333333</TD>
+    <TD>40.11519444444444</TD>
+    <TD>U</TD>
+    <TD>+40 2473 </TD>
+    <TD>11.2</TD>
+    <TD>G5</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2356</TD>
+    <TD> </TD>
+    <TD>40  37</TD>
+    <TD> </TD>
+    <TD>103140</TD>
+    <TD>9.4</TD>
+    <TD>J</TD>
+    <TD>178.1617083333333</TD>
+    <TD>40.13119444444444</TD>
+    <TD>U</TD>
+    <TD>+40 2472 </TD>
+    <TD>8.6</TD>
+    <TD>K0III</TD>
+    <TD>dwarf, not giant; HD 103140</TD>
+  </TR>
+  <TR>
+    <TD>2537</TD>
+    <TD> </TD>
+    <TD>41  35</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.3</TD>
+    <TD>J</TD>
+    <TD>178.25845833333332</TD>
+    <TD>40.19483333333333</TD>
+    <TD>U</TD>
+    <TD>+41 2243 </TD>
+    <TD>10.8</TD>
+    <TD>G8III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2354</TD>
+    <TD> </TD>
+    <TD>40  35</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.1</TD>
+    <TD>J</TD>
+    <TD>178.03004166666665</TD>
+    <TD>40.15227777777777</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.7</TD>
+    <TD>G8III:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2534</TD>
+    <TD> </TD>
+    <TD>41  32</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.5</TD>
+    <TD>J</TD>
+    <TD>177.97454166666665</TD>
+    <TD>40.30119444444444</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.7</TD>
+    <TD>G9III:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2527</TD>
+    <TD> </TD>
+    <TD>41  25</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.9</TD>
+    <TD>J</TD>
+    <TD>177.715625</TD>
+    <TD>40.215222222222216</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>12.1</TD>
+    <TD>K0</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2530</TD>
+    <TD> </TD>
+    <TD>41  28</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.9</TD>
+    <TD>J</TD>
+    <TD>177.8285833333333</TD>
+    <TD>40.20463888888888</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.5</TD>
+    <TD>G6V:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2529</TD>
+    <TD> </TD>
+    <TD>41  27</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.9</TD>
+    <TD>J</TD>
+    <TD>177.79120833333332</TD>
+    <TD>40.282888888888884</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.3</TD>
+    <TD>G9III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2524</TD>
+    <TD> </TD>
+    <TD>41  22</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.3</TD>
+    <TD>J</TD>
+    <TD>177.61454166666664</TD>
+    <TD>40.28155555555555</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.0</TD>
+    <TD>K0III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2528</TD>
+    <TD> </TD>
+    <TD>41  26</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.7</TD>
+    <TD>J</TD>
+    <TD>177.73804166666665</TD>
+    <TD>40.33391666666666</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.9</TD>
+    <TD>K0III:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2531</TD>
+    <TD> </TD>
+    <TD>41  29</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.5</TD>
+    <TD>J</TD>
+    <TD>177.81474999999998</TD>
+    <TD>40.60952777777777</TD>
+    <TD>U</TD>
+    <TD>+41 2240 </TD>
+    <TD>10.6</TD>
+    <TD>G8III</TD>
+    <TD>dwarf, not giant</TD>
+  </TR>
+  <TR>
+    <TD>2532</TD>
+    <TD> </TD>
+    <TD>41  30</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.9</TD>
+    <TD>J</TD>
+    <TD>177.940375</TD>
+    <TD>40.81372222222222</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>12.5</TD>
+    <TD>G9:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2533</TD>
+    <TD> </TD>
+    <TD>41  31</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.6</TD>
+    <TD>J</TD>
+    <TD>177.97699999999998</TD>
+    <TD>40.85538888888888</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.1</TD>
+    <TD>G9IV</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2337</TD>
+    <TD> </TD>
+    <TD>40  18</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.1</TD>
+    <TD>J</TD>
+    <TD>176.44912499999998</TD>
+    <TD>39.54302777777777</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.0</TD>
+    <TD>G8III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2341</TD>
+    <TD> </TD>
+    <TD>40  22</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.1</TD>
+    <TD>J</TD>
+    <TD>176.59520833333332</TD>
+    <TD>39.671166666666664</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.7</TD>
+    <TD>G6</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2344</TD>
+    <TD> </TD>
+    <TD>40  25</TD>
+    <TD> </TD>
+    <TD>102427</TD>
+    <TD>9.3</TD>
+    <TD>J</TD>
+    <TD>176.8772083333333</TD>
+    <TD>39.927861111111106</TD>
+    <TD>T</TD>
+    <TD>+40 2467 </TD>
+    <TD>8.6</TD>
+    <TD>G5</TD>
+    <TD>HD 102427</TD>
+  </TR>
+  <TR>
+    <TD>2345</TD>
+    <TD> </TD>
+    <TD>40  26</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.3</TD>
+    <TD>J</TD>
+    <TD>176.96729166666665</TD>
+    <TD>40.04105555555555</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.1</TD>
+    <TD>K0III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2342</TD>
+    <TD> </TD>
+    <TD>40  23</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>10.6</TD>
+    <TD>J</TD>
+    <TD>176.68474999999998</TD>
+    <TD>40.08230555555555</TD>
+    <TD>U</TD>
+    <TD>+40 2465 </TD>
+    <TD>10.0</TD>
+    <TD>G7III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2335</TD>
+    <TD> </TD>
+    <TD>40  16</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.5</TD>
+    <TD>J</TD>
+    <TD>176.2494583333333</TD>
+    <TD>40.084333333333326</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>12.1</TD>
+    <TD>G6III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2333</TD>
+    <TD> </TD>
+    <TD>40  14</TD>
+    <TD> </TD>
+    <TD>101918</TD>
+    <TD>10.3</TD>
+    <TD>J</TD>
+    <TD>176.0023333333333</TD>
+    <TD>40.082722222222216</TD>
+    <TD>U</TD>
+    <TD>+40 2457 </TD>
+    <TD>8.8</TD>
+    <TD>K4IV</TD>
+    <TD>HD 101918</TD>
+  </TR>
+  <TR>
+    <TD>2517</TD>
+    <TD> </TD>
+    <TD>41  15</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.3</TD>
+    <TD>J</TD>
+    <TD>176.438</TD>
+    <TD>40.21988888888888</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.6</TD>
+    <TD>G8III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2332</TD>
+    <TD> </TD>
+    <TD>40  13</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.6</TD>
+    <TD>J</TD>
+    <TD>175.977625</TD>
+    <TD>40.089861111111105</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>10.0</TD>
+    <TD>K1III</TD>
+    <TD>IRAS 11413+4022</TD>
+  </TR>
+  <TR>
+    <TD>2519</TD>
+    <TD> </TD>
+    <TD>41  17</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.0</TD>
+    <TD>J</TD>
+    <TD>176.47904166666663</TD>
+    <TD>40.49405555555555</TD>
+    <TD>U</TD>
+    <TD>+41 2230 </TD>
+    <TD>10.4</TD>
+    <TD>K2IV</TD>
+    <TD>IRAS Z11432+4046, giant</TD>
+  </TR>
+  <TR>
+    <TD>2518</TD>
+    <TD> </TD>
+    <TD>41  16</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.7</TD>
+    <TD>J</TD>
+    <TD>176.4163333333333</TD>
+    <TD>40.82933333333333</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>12.3</TD>
+    <TD>G6III:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2516</TD>
+    <TD> </TD>
+    <TD>41  14</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>10.4</TD>
+    <TD>J</TD>
+    <TD>176.32562499999997</TD>
+    <TD>40.80816666666666</TD>
+    <TD>U</TD>
+    <TD>+41 2229 </TD>
+    <TD>9.4</TD>
+    <TD>G8III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2523</TD>
+    <TD> </TD>
+    <TD>41  21</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.6</TD>
+    <TD>J</TD>
+    <TD>177.14904166666665</TD>
+    <TD>40.52925</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>10.6</TD>
+    <TD>K0III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2520</TD>
+    <TD> </TD>
+    <TD>41  18</TD>
+    <TD> </TD>
+    <TD>102508</TD>
+    <TD>10.3</TD>
+    <TD>J</TD>
+    <TD>177.00995833333332</TD>
+    <TD>40.67533333333333</TD>
+    <TD>U</TD>
+    <TD>+41 2232 </TD>
+    <TD>9.0</TD>
+    <TD>G8III</TD>
+    <TD>HD 102508</TD>
+  </TR>
+  <TR>
+    <TD>2526</TD>
+    <TD> </TD>
+    <TD>41  24</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>10.5</TD>
+    <TD>J</TD>
+    <TD>177.68249999999998</TD>
+    <TD>40.79024999999999</TD>
+    <TD>U</TD>
+    <TD>+41 2239 </TD>
+    <TD>9.4</TD>
+    <TD>K1III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2525</TD>
+    <TD> </TD>
+    <TD>41  23</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.5</TD>
+    <TD>J</TD>
+    <TD>177.64558333333332</TD>
+    <TD>40.93405555555555</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>12.1</TD>
+    <TD>G5</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2522</TD>
+    <TD> </TD>
+    <TD>41  20</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.1</TD>
+    <TD>J</TD>
+    <TD>177.10879166666663</TD>
+    <TD>41.02188888888888</TD>
+    <TD>U</TD>
+    <TD>+41 2233 </TD>
+    <TD>9.8</TD>
+    <TD>K1III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2521</TD>
+    <TD> </TD>
+    <TD>41  19</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.5</TD>
+    <TD>J</TD>
+    <TD>177.0873333333333</TD>
+    <TD>41.088583333333325</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.8</TD>
+    <TD>G8III:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2703</TD>
+    <TD> </TD>
+    <TD>42  34</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.3</TD>
+    <TD>J</TD>
+    <TD>177.2938333333333</TD>
+    <TD>41.53041666666666</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>10.4</TD>
+    <TD>K5V:</TD>
+    <TD>IRAS Z11465+4148; giant, not dwarf</TD>
+  </TR>
+  <TR>
+    <TD>2542</TD>
+    <TD> </TD>
+    <TD>41  40</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.2</TD>
+    <TD>J</TD>
+    <TD>178.7747083333333</TD>
+    <TD>40.747388888888885</TD>
+    <TD>U</TD>
+    <TD>+41 2246 </TD>
+    <TD>10.4</TD>
+    <TD>G7</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2541</TD>
+    <TD> </TD>
+    <TD>41  39</TD>
+    <TD>*</TD>
+    <TD></TD>
+    <TD>12.3</TD>
+    <TD>J</TD>
+    <TD>178.6242083333333</TD>
+    <TD>40.72988888888888</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>10.8</TD>
+    <TD>M3III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2540</TD>
+    <TD> </TD>
+    <TD>41  38</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.8</TD>
+    <TD>J</TD>
+    <TD>178.49645833333332</TD>
+    <TD>40.88902777777777</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.2</TD>
+    <TD>G6</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2546</TD>
+    <TD> </TD>
+    <TD>41  44</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.7</TD>
+    <TD>J</TD>
+    <TD>179.03916666666663</TD>
+    <TD>40.82191666666666</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>12.2</TD>
+    <TD>K0</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2543</TD>
+    <TD> </TD>
+    <TD>41  41</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.5</TD>
+    <TD>J</TD>
+    <TD>178.81858333333332</TD>
+    <TD>40.768611111111106</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.8</TD>
+    <TD>G9</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2548</TD>
+    <TD> </TD>
+    <TD>41  46</TD>
+    <TD> </TD>
+    <TD>103707</TD>
+    <TD>10.2</TD>
+    <TD>J</TD>
+    <TD>179.16887499999999</TD>
+    <TD>41.02505555555555</TD>
+    <TD>T</TD>
+    <TD>+41 2250 </TD>
+    <TD>8.7</TD>
+    <TD>K0III</TD>
+    <TD>HD 103707</TD>
+  </TR>
+  <TR>
+    <TD>2547</TD>
+    <TD> </TD>
+    <TD>41  45</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.7</TD>
+    <TD>J</TD>
+    <TD>179.04312499999997</TD>
+    <TD>41.14366666666666</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>12.7</TD>
+    <TD>G8:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2538</TD>
+    <TD> </TD>
+    <TD>41  36</TD>
+    <TD> </TD>
+    <TD>103309</TD>
+    <TD>7.7</TD>
+    <TD>J</TD>
+    <TD>178.4602083333333</TD>
+    <TD>40.91288888888889</TD>
+    <TD>T</TD>
+    <TD>+41 2244 </TD>
+    <TD>6.7</TD>
+    <TD>K1III</TD>
+    <TD>HD 103309</TD>
+  </TR>
+  <TR>
+    <TD>2539</TD>
+    <TD> </TD>
+    <TD>41  37</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.2</TD>
+    <TD>J</TD>
+    <TD>178.4909583333333</TD>
+    <TD>40.978111111111104</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.4</TD>
+    <TD>G5</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2535</TD>
+    <TD> </TD>
+    <TD>41  33</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.5</TD>
+    <TD>J</TD>
+    <TD>178.08916666666664</TD>
+    <TD>40.98391666666666</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>12.1</TD>
+    <TD>G8</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2536</TD>
+    <TD> </TD>
+    <TD>41  34</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.8</TD>
+    <TD>J</TD>
+    <TD>178.13462499999997</TD>
+    <TD>40.99688888888888</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.1</TD>
+    <TD>G8III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2714</TD>
+    <TD> </TD>
+    <TD>42  45</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.7</TD>
+    <TD>J</TD>
+    <TD>178.674875</TD>
+    <TD>41.24652777777777</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>12.3</TD>
+    <TD>G8:</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2713</TD>
+    <TD> </TD>
+    <TD>42  44</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.9</TD>
+    <TD>J</TD>
+    <TD>178.60662499999998</TD>
+    <TD>41.330722222222214</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.5</TD>
+    <TD>G8</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2715</TD>
+    <TD> </TD>
+    <TD>42  46</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.1</TD>
+    <TD>J</TD>
+    <TD>178.92104166666664</TD>
+    <TD>41.43341666666666</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.7</TD>
+    <TD>G9III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2721</TD>
+    <TD> </TD>
+    <TD>42  52</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.3</TD>
+    <TD>J</TD>
+    <TD>179.43404166666664</TD>
+    <TD>41.26455555555555</TD>
+    <TD>U</TD>
+    <TD>+42 2258 </TD>
+    <TD>10.5</TD>
+    <TD>G5</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2720</TD>
+    <TD> </TD>
+    <TD>42  51</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>11.6</TD>
+    <TD>J</TD>
+    <TD>179.38774999999998</TD>
+    <TD>41.43997222222222</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.3</TD>
+    <TD>G7III</TD>
+    <TD> </TD>
+  </TR>
+  <TR>
+    <TD>2719</TD>
+    <TD> </TD>
+    <TD>42  50</TD>
+    <TD> </TD>
+    <TD>103769</TD>
+    <TD>10.2</TD>
+    <TD>J</TD>
+    <TD>179.26787499999998</TD>
+    <TD>41.392111111111106</TD>
+    <TD>U</TD>
+    <TD>+42 2257 </TD>
+    <TD>9.0</TD>
+    <TD>G8III</TD>
+    <TD>HD 103769</TD>
+  </TR>
+  <TR>
+    <TD>2723</TD>
+    <TD> </TD>
+    <TD>42  54</TD>
+    <TD> </TD>
+    <TD>103943</TD>
+    <TD>10.3</TD>
+    <TD>J</TD>
+    <TD>179.58691666666664</TD>
+    <TD>41.830999999999996</TD>
+    <TD>U</TD>
+    <TD>+42 2259 </TD>
+    <TD>9.8</TD>
+    <TD>G5</TD>
+    <TD>SWrn of 19" cpm pair, HD 103943</TD>
+  </TR>
+  <TR>
+    <TD>2717</TD>
+    <TD> </TD>
+    <TD>42  48</TD>
+    <TD> </TD>
+    <TD></TD>
+    <TD>12.3</TD>
+    <TD>J</TD>
+    <TD>178.98179166666665</TD>
+    <TD>41.70652777777777</TD>
+    <TD>U</TD>
+    <TD>         </TD>
+    <TD>11.6</TD>
+    <TD>K1III</TD>
+    <TD> </TD>
+  </TR>
+</TABLEDATA>
+</DATA>
+</TABLE>
+</RESOURCE>
+</VOTABLE>
