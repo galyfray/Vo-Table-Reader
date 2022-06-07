@@ -9,4 +9,5 @@ VO Table parser that aims for performance as well as compatibility. One of the g
 - check if the use of the `xmlns`, `xmlns:xsi` and `xsi:schemaLocation` is relevant.
 - create test files
 - create benchmarks
-- read the [specification](http://cdsweb.u-strasbg.fr/doc-cds/VOTable/) to ensure that everything is OK
+- read the [specification](http://cdsweb.u-strasbg.fr/doc-cds/VOTable/) to ensure that everything is correctly supported
+- support different text encoding

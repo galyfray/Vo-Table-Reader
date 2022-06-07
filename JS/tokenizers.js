@@ -5,7 +5,7 @@ if (typeof module !== "undefined") {
 class StringTokenizer extends Tokenizer {
 
     constructor(quote = "'") {
-        super("string");
+        super(StringTokenizer.TYPE);
         this.quote = quote;
     }
 
@@ -25,10 +25,12 @@ class StringTokenizer extends Tokenizer {
     }
 }
 
+StringTokenizer.TYPE = "string";
+
 class WhitespaceTokenizer extends Tokenizer {
 
     constructor() {
-        super("whitespace");
+        super(WhitespaceTokenizer.TYPE);
     }
 
     canTokenize(char) {
@@ -36,10 +38,12 @@ class WhitespaceTokenizer extends Tokenizer {
     }
 }
 
+WhitespaceTokenizer.TYPE = "whitespace";
+
 class NumberTokenizer extends Tokenizer {
 
     constructor() {
-        super("int");
+        super("");
         this._isFloat = false;
     }
 
@@ -58,21 +62,23 @@ class NumberTokenizer extends Tokenizer {
         if (this._isFloat) {
             return {
                 value: value.value,
-                type : "float"
+                type : NumberTokenizer.TYPE.FLOAT
             };
         } else {
             return {
                 value: value.value,
-                type : "int"
+                type : NumberTokenizer.TYPE.INTEGER
             };
         }
     }
 }
 
+NumberTokenizer.TYPE = {INTEGER: "int", FLOAT: "float"};
+
 class IdentifierTokenizer extends Tokenizer {
 
     constructor() {
-        super("identifier");
+        super(IdentifierTokenizer.TYPE);
     }
 
     canTokenize(char) {
@@ -84,10 +90,12 @@ class IdentifierTokenizer extends Tokenizer {
     }
 }
 
+IdentifierTokenizer.TYPE = "identifier";
+
 class ParenthesisTokenizer extends Tokenizer {
 
     constructor() {
-        super("parenthesis");
+        super(ParenthesisTokenizer.TYPE);
     }
 
     canTokenize(char) {
@@ -102,10 +110,12 @@ class ParenthesisTokenizer extends Tokenizer {
     }
 }
 
+ParenthesisTokenizer.TYPE = "parenthesis";
+
 class OperatorTokenizer extends Tokenizer {
 
     constructor() {
-        super("operator");
+        super(OperatorTokenizer.TYPE);
     }
 
     canTokenize(char) {
@@ -113,9 +123,11 @@ class OperatorTokenizer extends Tokenizer {
     }
 }
 
+OperatorTokenizer.TYPE = "operator";
+
 class TagOpeningTokenizer extends Tokenizer {
     constructor() {
-        super("tag_oppening");
+        super("");
         this.__length = 0;
         this.__closing = false;
     }
@@ -133,16 +145,25 @@ class TagOpeningTokenizer extends Tokenizer {
 
     tokenize(charStream) {
         let value = super.tokenize(charStream);
-        return {
-            value: value.value,
-            type : this.__closing ? "tag_closing_oppening" : this._type
-        };
+        if (this.__closing) {
+            return {
+                value: value.value,
+                type : TagOpeningTokenizer.TYPE.TAG_CLOSING_OPENNING
+            };
+        } else {
+            return {
+                value: value.value,
+                type : TagOpeningTokenizer.TYPE.TAG_OPENNING
+            };
+        }
     }
 }
 
+TagOpeningTokenizer.TYPE = {TAG_OPENNING: "tag_opening", TAG_CLOSING_OPENNING: "tag_closing_opening"};
+
 class TagClosingTokenizer extends Tokenizer {
     constructor() {
-        super("tag_closing");
+        super("");
         this.__self_closing = false;
         this.__length = 0;
     }
@@ -163,16 +184,25 @@ class TagClosingTokenizer extends Tokenizer {
         if (this.__self_closing && value.value.length === 1) {
             throw new Error("Unexpected character '" + charStream.peek() + "'");
         }
-        return {
-            value: value.value,
-            type : this.__self_closing ? "tag_self_closing" : this._type
-        };
+        if (this.__self_closing) {
+            return {
+                value: value.value,
+                type : TagClosingTokenizer.TYPE.TAG_SELF_CLOSING
+            };
+        } else {
+            return {
+                value: value.value,
+                type : TagClosingTokenizer.TYPE.TAG_CLOSING
+            };
+        }
     }
 }
 
+TagClosingTokenizer.TYPE = {TAG_CLOSING: "tag_closing", TAG_SELF_CLOSING: "tag_self_closing"};
+
 class QMarkTokenizer extends Tokenizer {
     constructor() {
-        super("qmark");
+        super(QMarkTokenizer.TYPE);
         this.__length = 0;
     }
 
@@ -186,6 +216,8 @@ class QMarkTokenizer extends Tokenizer {
         return this.__length < 2;
     }
 }
+
+QMarkTokenizer.TYPE = "qmark";
 
 module.exports = {
     StringTokenizer,
