@@ -54,7 +54,6 @@ class Parser {
 test("tokenize", async t => {
     try {
         let data = await fs.promises.readFile(resolve("small-tr.txt"));
-        console.log();
         let parser = new Parser(data.toString());
         let tokens = parser.get_tokens();
         t.snapshot(tokens, "tokens");
