@@ -7,17 +7,23 @@ class UnexpectedTokenError extends Error {}
 class VoTableParser {
 
     constructor(VoTable) {
-        this._voTable = VoTable;
-        this._charStream = new CharStream(VoTable);
-        this._tokenStream = new TokenStream(this._charStream,
+        this._vo_table = VoTable;
+        this._char_stream = new CharStream(VoTable);
+        this._token_stream = new TokenStream(this._char_stream,
             this._isWhitespace,
             new tokenizers.StringTokenizer("'"),
             new tokenizers.StringTokenizer('"'),
             new tokenizers.NumberTokenizer(),
+            new tokenizers.QMarkTokenizer(),
+            new tokenizers.TagClosingTokenizer(),
+            new tokenizers.TagOpeningTokenizer(),
+            new tokenizers.IdentifierTokenizer(),
+            new tokenizers.OperatorTokenizer(),
+            new tokenizers.ParenthesisTokenizer(),
             new tokenizers.WhitespaceTokenizer()
         );
         this._internal = {};
-        this._parse();
+        this._tokens = this._parse();
     }
 
     //==#===#==// Parsing functions //==#===#==//
@@ -27,13 +33,17 @@ class VoTableParser {
      * This function will raise a SyntaxError if the VOTABLE tag is not found, and a warning if the VOTable's version is not known.
      */
     _parse_init() {
-        if (this._tokenStream.next().type !== tokenizers.TagOpeningTokenizer.TYPE.TAG_OPENNING) {
+        if (this._token_stream.next().type !== tokenizers.TagOpeningTokenizer.TYPE.TAG_OPENNING) {
             throw new SyntaxError("VOTABLE tag not found");
         }
-        let prologue = this._tokenStream.peek().type === tokenizers.QMarkTokenizer.TYPE;
+        let prologue = this._token_stream.peek().type === tokenizers.QMarkTokenizer.TYPE;
         let data = this._parse_payload(prologue);
         if (prologue) {
             this._internal.prologue = data;
+            if (this._token_stream.peek().type !== tokenizers.TagOpeningTokenizer.TYPE.TAG_OPENNING) {
+                throw new SyntaxError("VOTABLE tag not found");
+            }
+            this._token_stream.next();
             this._internal.VoTable = this._parse_payload();
         } else {
             this._internal.VoTable = data;
@@ -52,57 +62,63 @@ class VoTableParser {
     _parse_payload(is_prologue = false) {
         let data = {};
         if (is_prologue) {
-            this._tokenStream.next();
-            if (this._tokenStream.peek().value !== "xml") {
-                this._throw(this._tokenStream.next(), "xml");
+            this._token_stream.next();
+            if (this._token_stream.peek().value !== "xml") {
+                this._throw(this._token_stream.next(), "xml");
             }
         }
-        data.name = this._tokenStream.next();
+        data.name = this._token_stream.next();
         if (data.name.type !== tokenizers.IdentifierTokenizer.TYPE) {
             this._throw(data.name, "a valid xml identifier");
         }
+        data.name = data.name.value;
         data.attributes = {};
         let current = data.attributes;
         while (
-            this._tokenStream.peek().type !== tokenizers.TagClosingTokenizer.TYPE.TAG_CLOSING &&
-            this._tokenStream.peek().type !== tokenizers.TagClosingTokenizer.TYPE.TAG_SELF_CLOSING ||
-            is_prologue && this._tokenStream.peek().type !== tokenizers.QMarkTokenizer.TYPE
+            this._token_stream.peek().type !== tokenizers.TagClosingTokenizer.TYPE.TAG_CLOSING &&
+            this._token_stream.peek().type !== tokenizers.TagClosingTokenizer.TYPE.TAG_SELF_CLOSING &&
+            (!is_prologue || this._token_stream.peek().type !== tokenizers.QMarkTokenizer.TYPE)
         ) {
             current = data.attributes;
-            let key = this._tokenStream.next();
+            let key = this._token_stream.next();
             if (key.type !== tokenizers.IdentifierTokenizer.TYPE) {
                 this._throw(key, "a valid payload identifier");
             }
-            if (this._charStream.peek() === ":") {
-                this._charStream.next();
+            if (this._char_stream.peek() === ":") {
+                this._char_stream.next();
                 if (data.attributes[key.value] === undefined) {
                     data.attributes[key.value] = {};
                     current = data.attributes[key.value];
-                    key = this._tokenStream.next();
+                    key = this._token_stream.next();
                     if (key.type !== tokenizers.IdentifierTokenizer.TYPE) {
                         this._throw(key, "a valid payload identifier");
                     }
                 }
             }
-            if (this._charStream.peek() !== "=") {
-                this._throw(this._tokenStream.next(), "=");
+            if (this._char_stream.peek() !== "=") {
+                this._throw(this._token_stream.next(), "=");
             }
-            let value = this._tokenStream.next();
-            if (value.type !== tokenizers.StringTokenizer.TYPE.STRING) {
-                this._throw(key, "All attributes must be quoted values");
+            this._char_stream.next();
+            let value = this._token_stream.next();
+            if (value.type !== tokenizers.StringTokenizer.TYPE) {
+                this._throw(value, "All attributes must be quoted values");
             }
             current[key.value] = value.value;
         }
-        data.self_closed = this._tokenStream.peek().type === tokenizers.TagClosingTokenizer.TYPE.TAG_SELF_CLOSING;
-        this._tokenStream.next();
+
+        if (is_prologue) {
+            this._token_stream.next();
+        }
+        data.self_closed = this._token_stream.next().type === tokenizers.TagClosingTokenizer.TYPE.TAG_SELF_CLOSING;
         return data;
     }
 
     _parse() {
+        this._parse_init();
         let tokens = [];
         try {
-            while (!this._tokenStream.eof()) {
-                tokens.push(this._tokenStream.next());
+            while (!this._token_stream.eof()) {
+                tokens.push(this._token_stream.next());
             }
         } catch (e) {
             console.error(e);
@@ -129,7 +145,7 @@ class VoTableParser {
                 message += `, expected ${expected}`;
             }
 
-            message += "\n" + this._query.split("\n")[this._char_stream.getLine() - 1] + "\n";
+            message += "\n" + this._vo_table.split("\n")[this._char_stream.getLine() - 1] + "\n";
 
             for (let i = 0;i < column - 1;i++) {
                 message += " ";
