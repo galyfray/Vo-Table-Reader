@@ -113,6 +113,29 @@ class VoTableParser {
         return data;
     }
 
+    /**
+     * Helper function dedicated to parse all ressource tag in the VOTable.
+     */
+    _parse_resources() {
+        let resources = [];
+        if (this._token_stream.peek().type !== tokenizers.TagOpeningTokenizer.TYPE.TAG_OPENNING) {
+            this._throw(this._token_stream.next(), "a RESOURCE tag");
+        }
+
+        resources.push(this._parse_resource());
+    }
+
+    /**
+     * Helper function dedicated to parse a single ressource tag
+     */
+    _parse_resource() {
+        if (this._token_stream.peek().value !== "RESOURCE") {
+            this._throw(this._token_stream.next(), "a RESOURCE tag");
+        }
+        let resource = this._parse_payload();
+
+    }
+
     _parse() {
         this._parse_init();
         let tokens = [];
