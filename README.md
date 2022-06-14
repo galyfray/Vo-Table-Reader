@@ -8,6 +8,7 @@ a table is an unordered set of rows, each of a uniform structure, as specified i
 metadata). Each row in a table is a sequence of table cells, and each of these contains either a primitive data type,
 or an array of such primitives. VOTable is derived from the Astrores format [[1]](http://cds.u-strasbg.fr/doc/astrores.htx), itself modeled on the FITS Table
 format [[2]](http://fits.gsfc.nasa.gov/); VOTable was designed to be close to the FITS Binary Table format.
+
 *Introduction of the specification of the VOTable version 1.4*
 
 A complete description of the standard can be found [here](http://www.ivoa.net/Documents/latest/VOT.html/)
