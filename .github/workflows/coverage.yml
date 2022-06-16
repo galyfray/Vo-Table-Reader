@@ -1,0 +1,23 @@
+
+name: Coverage Report
+
+on:
+  push:
+    branches: [ "actions" ]
+
+jobs:
+  build:
+    name: Report test coverage
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+        cache: 'npm'
+      env:
+        CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+    - run: npm ci
+    - run: npm run coverage-ci
+    - run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage/lcov.info
