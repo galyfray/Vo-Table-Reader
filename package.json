@@ -4,16 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "lint": "eslint JS/**/*.js test/**/*.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^8.17.0",
-    "text-table": "^0.2.0",
-    "time-span": "^5.0.0",
     "ava": "^4.3.0",
-    "chalk": "^5.0.1"
+    "chalk": "^5.0.1",
+    "eslint": "^8.17.0",
+    "eslint-plugin-security": "^1.5.0",
+    "text-table": "^0.2.0",
+    "time-span": "^5.0.0"
   }
 }
