@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "ava",
-    "lint": "eslint JS/**/*.js test/**/*.js"
+    "lint": "eslint JS/**/*.js test/**/*.js",
+    "coverage": "nyc --reporter=html ava",
+    "coverage-ci": "nyc --reporter=lcovonly ava"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +17,7 @@
     "chalk": "^5.0.1",
     "eslint": "^8.17.0",
     "eslint-plugin-security": "^1.5.0",
+    "nyc": "^15.1.0",
     "text-table": "^0.2.0",
     "time-span": "^5.0.0"
   }
