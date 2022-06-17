@@ -18,10 +18,9 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run coverage-ci
-    - run: echo let me $TEST
       env:
         TEST: ${{ secrets.TEST }}
-      
+    - run: echo let me $TEST
     - run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report --project-token $CODACY_PROJECT_TOKEN -r coverage/lcov.info
       env:
         CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
