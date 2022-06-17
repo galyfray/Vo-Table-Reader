@@ -3,7 +3,7 @@ name: Coverage Report
 
 on:
   push:
-    branches: [ "actions" ]
+    branches: [ "master" ]
 
 jobs:
   build:
@@ -18,9 +18,6 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run coverage-ci
-      env:
-        TEST: ${{ secrets.TEST }}
-    - run: echo let me $TEST
     - run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report --project-token $CODACY_PROJECT_TOKEN -r coverage/lcov.info
       env:
         CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
