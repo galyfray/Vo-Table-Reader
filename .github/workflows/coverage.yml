@@ -23,4 +23,4 @@ jobs:
     - run: echo $TEST
       env:
         CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
-    - run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage/lcov.info
+    - run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report --project-token $CODACY_PROJECT_TOKEN -r coverage/lcov.info
