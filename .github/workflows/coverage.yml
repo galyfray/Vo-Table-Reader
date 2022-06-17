@@ -18,7 +18,7 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run coverage-ci
-    - run: echo $TEST
+    - run: echo let me $TEST
       env:
         TEST: ${{ secrets.TEST }}
       
