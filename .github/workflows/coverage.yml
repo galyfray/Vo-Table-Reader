@@ -3,7 +3,7 @@ name: Coverage Report
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "actions" ]
 
 jobs:
   build:
