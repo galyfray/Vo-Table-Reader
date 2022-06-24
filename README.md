@@ -1,3 +1,4 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/68114bc7e8e948ac9292943d26f0dc2c)](https://www.codacy.com/gh/galyfray/Vo-Table-Reader/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=galyfray/Vo-Table-Reader&amp;utm_campaign=Badge_Grade)
 # Vo-Table-Reader
 
 VO Table parser that aims for performance as well as compatibility. One of the goal of this parser is to be available for both node JS and as a librairy for web applications.
