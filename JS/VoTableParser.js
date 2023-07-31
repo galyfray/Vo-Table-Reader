@@ -129,24 +129,9 @@ class VoTableParser {
     }
 
     /**
-     * Helper function dedicated to parse all ressource tag in the VOTable.
-     */
-    _parse_resources() {
-        let resources = [];
-        if (this._token_stream.peek().type !== tokenizers.TagOpeningTokenizer.TYPE.TAG_OPENNING) {
-            this._throw(this._token_stream.next(), "a RESOURCE tag");
-        }
-
-        resources.push(this._parse_resource());
-    }
-
-    /**
      * Helper function dedicated to parse a single ressource tag
      */
     _parse_resource() {
-        if (this._token_stream.peek().value !== "RESOURCE") {
-            this._throw(this._token_stream.next(), "a RESOURCE tag");
-        }
         let resource = this._parse_payload();
 
         // Note that a Ressource container can be empty. This is absurde but valid.
@@ -166,6 +151,14 @@ class VoTableParser {
         if (this._token_stream.peek().value === "DESCRIPTION") {
             this._internal.VoTable.description = this._parse_description();
             this._consume_opening();
+        }
+        if (this._token_stream.peek().value !== "RESOURCE") {
+            this._throw(this._token_stream.next(), "a RESOURCE tag");
+        }
+
+        this._internal.VoTable.resources = [];
+        while (this._token_stream.peek().value === "RESOURCE") {
+            this._internal.VoTable.resources.push(this._parse_resource());
         }
 
         let tokens = [];
