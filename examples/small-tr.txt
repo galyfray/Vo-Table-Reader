@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VOTABLE version="1.3">
+<DESCRIPTION> Heavly tuncated VO table for test purpose only.</DESCRIPTION>
 <RESOURCE type="results">
 <FIELD datatype="int" name="recno" ucd="meta.record">
 <DESCRIPTION>Record number assigned by the VizieR team. Should Not be used for identification.</DESCRIPTION>

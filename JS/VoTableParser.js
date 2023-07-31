@@ -162,6 +162,12 @@ class VoTableParser {
 
     _parse() {
         this._parse_init();
+        this._consume_opening();
+        if (this._token_stream.peek().value === "DESCRIPTION") {
+            this._internal.VoTable.description = this._parse_description();
+            this._consume_opening();
+        }
+
         let tokens = [];
         try {
             while (!this._token_stream.eof()) {
@@ -174,6 +180,17 @@ class VoTableParser {
     }
 
     //==#===#==// Generic helpers //==#===#==//
+
+    /**
+     * Helper function that simply check if the next token is a simple tag opening and consume it if so.
+     * If the token is anything esle this helper will throw an error.
+     */
+    _consume_opening() {
+        if (this._token_stream.peek().type !== tokenizers.TagOpeningTokenizer.TYPE.TAG_OPENNING) {
+            this._throw(this._token_stream.next(), "an opening tag");
+        }
+        this._token_stream.next();
+    }
 
     /**
      * Helper function that build an error message an then throw an {@link UnexpectedTokenError}
