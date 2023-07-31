@@ -116,7 +116,7 @@ class VoTableParser {
     _parse_description() {
         let data = this._parse_payload();
         data.content = "";
-        while (this._token_stream.peek().type !== tokenizers.TagOpeningTokenizer.TYPE.TAG_CLOSING_OPENNING) {
+        while (this._token_stream.peek(false).type !== tokenizers.TagOpeningTokenizer.TYPE.TAG_CLOSING_OPENNING) {
             data.content += this._token_stream.next(false).value;
         }
         this._token_stream.next();

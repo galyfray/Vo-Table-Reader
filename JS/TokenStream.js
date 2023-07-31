@@ -57,8 +57,8 @@ class TokenStream {
         throw new TokenizingException(`unable to tokenize character ${this.charStream.peek()}`);
     }
 
-    peek() {
-        return this._currentToken || (this._currentToken = this.next());
+    peek(skipWhitespace = true) {
+        return this._currentToken || (this._currentToken = this.next(skipWhitespace));
     }
 
     /**
