@@ -135,13 +135,49 @@ class VoTableParser {
         let resource = this._parse_payload();
 
         // Note that a Ressource container can be empty. This is absurde but valid.
-        if (this._token_stream.peek().type === tokenizers.TagOpeningTokenizer.TYPE.TAG_CLOSING_OPENNING) {
-            this._token_stream.next();
-            if (this._token_stream.peek().value !== "RESOURCE") {
-                this._throw(this._token_stream.next(), "a closing RESOURCE tag");
-            }
+        if (this._consume_closing("RESOURCE", false)) {
             return resource;
         }
+        // this._consume_opening();
+
+        if (this._token_stream.peek().value === "DESCRIPTION") {
+            resource.description = this._parse_description();
+
+            if (this._consume_closing("RESOURCE", false)) {
+                return resource;
+            }
+
+            this._consume_opening();
+        }
+
+        /**
+         * INFO
+         */
+
+        /**
+         * COOSYS
+         * TIMESYS
+         * PARAM
+         * GROUP
+         */
+
+        /**
+         * LINK
+         */
+        /**
+         * TABLE
+         */
+
+        // FIXME : recusive behavior inside a parser should be avoided.
+        if (this._token_stream.peek().value === "RESOURCE") {
+            resource.resource = this._parse_resource();
+        }
+
+        /**
+         * INFO
+         */
+
+        this._consume_closing("RESOURCE", false); // TODO : remove the false to raise an error.
         return resource;
     }
 
@@ -152,6 +188,15 @@ class VoTableParser {
             this._internal.VoTable.description = this._parse_description();
             this._consume_opening();
         }
+
+        /**
+         * COOSYS
+         * TIMESYS
+         * INFO
+         * PARAM
+         * GROUP
+         */
+
         if (this._token_stream.peek().value !== "RESOURCE") {
             this._throw(this._token_stream.next(), "a RESOURCE tag");
         }
@@ -159,6 +204,11 @@ class VoTableParser {
         this._internal.VoTable.resources = [];
         while (this._token_stream.peek().value === "RESOURCE") {
             this._internal.VoTable.resources.push(this._parse_resource());
+            if (this._token_stream.peek().type === tokenizers.TagOpeningTokenizer.TYPE.TAG_CLOSING_OPENNING) {
+                break;
+            } else {
+                this._consume_opening();
+            }
         }
 
         let tokens = [];
@@ -183,6 +233,27 @@ class VoTableParser {
             this._throw(this._token_stream.next(), "an opening tag");
         }
         this._token_stream.next();
+    }
+
+    /**
+     * Helper function that handles the consumption of ending tokens
+     * @param {string} expected The expected identifier to close. if null any identifier will be accepted
+     * @param {boolean} raising Wheter or not this method should rase an error if a closig tag isn't found.
+     * @returns true if the ending got correctly consumed, false otherwise.
+     */
+    _consume_closing(expected, raising = true) {
+        if (this._token_stream.peek().type === tokenizers.TagOpeningTokenizer.TYPE.TAG_CLOSING_OPENNING) {
+            this._token_stream.next();
+            if (this._token_stream.peek().value !== expected && expected !== null) {
+                this._throw(this._token_stream.next(), "a closing " + expected + " tag");
+                return false;
+            }
+            this._token_stream.next();
+            return true;
+        } else if (raising) {
+            this._throw(this._token_stream.next(), "a closing tag");
+        }
+        return false;
     }
 
     /**
