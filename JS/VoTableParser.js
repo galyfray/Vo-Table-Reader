@@ -1,7 +1,6 @@
 const tokenizers = require("./tokenizers");
 const {TokenStream} = require("./TokenStream");
 const CharStream = require("./CharStream");
-const table = require("text-table");
 
 class UnexpectedTokenError extends Error {}
 
@@ -24,7 +23,7 @@ class VoTableParser {
             new tokenizers.WhitespaceTokenizer()
         );
         this._internal = {};
-        this._tokens = this._parse();
+        this._parse();
     }
 
     //==#===#==// Parsing functions //==#===#==//
@@ -169,12 +168,14 @@ class VoTableParser {
         let row;
         let data;
         while (this._token_stream.peek().value === "TR") {
+            this._token_stream.next(); // TR are not expected to have a payload
             this._token_stream.next();
 
             row = [];
             this._consume_opening();
 
             while (this._token_stream.peek().value === "TD") {
+                this._token_stream.next(); // TD are not expected to have a payload
                 this._token_stream.next();
 
                 data = "";
@@ -261,16 +262,22 @@ class VoTableParser {
                 return table;
             }
 
-            // this._consume_opening();
+            this._consume_opening();
         }
 
         /**
          * LINK
          */
 
-        /**
-         * DATA
-         */
+        if (this._token_stream.peek().value === "DATA") {
+            table.data = this._parse_data();
+
+            if (this._consume_closing("TABLE", false)) {
+                return table;
+            }
+
+            this._consume_opening();
+        }
 
         /**
          * INFO
@@ -321,7 +328,7 @@ class VoTableParser {
                 return resource;
             }
 
-            // this._consume_opening();
+            this._consume_opening();
         }
 
         // FIXME : recusive behavior inside a parser should be avoided.
@@ -367,15 +374,11 @@ class VoTableParser {
             }
         }
 
-        let tokens = [];
-        try {
-            while (!this._token_stream.eof()) {
-                tokens.push(this._token_stream.next());
-            }
-        } catch (e) {
-            console.error(e);
-        }
-        return tokens;
+        /**
+         * INFO
+         */
+
+        this._consume_closing("VOTABLE");
     }
 
     //==#===#==// Generic helpers //==#===#==//

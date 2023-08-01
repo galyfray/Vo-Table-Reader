@@ -12,9 +12,7 @@ test("Parser init", async t => {
         let data = await fs.promises.readFile(resolve("small-tr.txt"));
         let parser = new VoTableParser(data.toString());
         const internal = parser._internal;
-        const tokens = parser._tokens;
         t.snapshot(internal, "internal");
-        t.snapshot(tokens, "tokens");
     } catch (e) {
         console.error(e);
         t.fail();
