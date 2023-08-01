@@ -129,7 +129,6 @@ class TagOpeningTokenizer extends Tokenizer {
     constructor() {
         super("");
         this.__length = 0;
-        this.__closing = false;
     }
 
     canTokenize(char) {
@@ -139,13 +138,12 @@ class TagOpeningTokenizer extends Tokenizer {
 
     _canContinueTokenization(char) {
         this.__length++;
-        this.__closing = char === "/";
-        return this.__length < 2 && char === "<" || this.__length < 3 && this.__closing;
+        return this.__length < 2 && char === "<" || this.__length < 3 && char === "/";
     }
 
     tokenize(charStream) {
         let value = super.tokenize(charStream);
-        if (this.__closing) {
+        if (this.__length > 2 || this.__length > 1 && charStream.eof()) {
             return {
                 value: value.value,
                 type : TagOpeningTokenizer.TYPE.TAG_CLOSING_OPENNING

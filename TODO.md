@@ -1,6 +1,6 @@
 ## Short term
-- [ ] support `TABLEDATA` data encoding
-- [ ] create benchmarks
+- [X] support `TABLEDATA` data encoding
+- [ ] switch to TypeScript.
 - [ ] create test files
 - [ ] setup github actions :
     - [ ] to check for code style
@@ -11,6 +11,10 @@
 - [ ] check that all optional `DESCRIPTION` tags are suported
 
 ## Mid term
+- [ ] create benchmarks :
+    - [ ] find a good benchmark/ profinling framework
+    - [ ] find a good amount of representative VoTables to represent normal usecases
+    - [ ] create/find abnormaly large VoTable for a synthetic benchmark
 - [ ] support `INFO`
 - [ ] support `COOSYS` (and check I've seen somewhere something about deprecation of this tag)
 - [ ] support `PARAM`

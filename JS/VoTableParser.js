@@ -23,7 +23,7 @@ class VoTableParser {
             new tokenizers.WhitespaceTokenizer()
         );
         this._internal = {};
-        this._tokens = this._parse();
+        this._parse();
     }
 
     //==#===#==// Parsing functions //==#===#==//
@@ -113,67 +113,337 @@ class VoTableParser {
         return data;
     }
 
+    /**
+     * Helper function dedicated to parse a description tag.
+     * This helper assumes that the opening tag has been already consumed and the current token is a DESCRIPTION identifier.
+     * returns an object representing a description tag and all of it's componant.
+     */
     _parse_description() {
         let data = this._parse_payload();
         data.content = "";
-        while (this._token_stream.peek().type !== tokenizers.TagOpeningTokenizer.TYPE.TAG_CLOSING_OPENNING) {
+        while (this._token_stream.peek(false).type !== tokenizers.TagOpeningTokenizer.TYPE.TAG_CLOSING_OPENNING) {
             data.content += this._token_stream.next(false).value;
         }
-        this._token_stream.next();
-        if (this._token_stream.peek().value !== "DESCRIPTION") {
-            this._throw(this._token_stream.next(), "a clossing DESCRIPTION tag");
-        }
-        this._token_stream.next();
-        this._token_stream.next();
+        this._consume_closing("DESCRIPTION");
         return data;
     }
 
     /**
-     * Helper function dedicated to parse all ressource tag in the VOTable.
+     * Helper function dedicated to parse a field tag.
+     * This helper assumes that the opening tag has been already consumed and the current token is a FIELD identifier.
+     * returns an object representing a field tag and all of it's componant.
      */
-    _parse_resources() {
-        let resources = [];
-        if (this._token_stream.peek().type !== tokenizers.TagOpeningTokenizer.TYPE.TAG_OPENNING) {
-            this._throw(this._token_stream.next(), "a RESOURCE tag");
+    _parse_field() {
+        let field = this._parse_payload();
+
+        // Note that a Field container can be empty. This is absurde but valid.
+        if (this._consume_closing("FIELD", false)) {
+            return field;
+        }
+        this._consume_opening();
+
+        if (this._token_stream.peek().value === "DESCRIPTION") {
+            field.description = this._parse_description();
+
+            if (this._consume_closing("FIELD", false)) {
+                return field;
+            }
+
+            this._consume_opening();
         }
 
-        resources.push(this._parse_resource());
+        /**
+         * VALUES
+         */
+
+        /**
+         * LINK
+         */
+
+        this._consume_closing("FIELD");
+        return field;
     }
 
     /**
-     * Helper function dedicated to parse a single ressource tag
+     * Helper function dedicated to parse a table data tag.
+     * This helper assumes that the opening tag has been already consumed and the current token is a TABLEDATA identifier.
+     * returns an object representing a table data tag and all of it's componant.
+     */
+    _parse_table_data() {
+        let table = this._parse_payload();
+
+        table.rows = [];
+
+        // Note that a Tabledata container can be empty. This is for once logic.
+        if (this._consume_closing("TABLEDATA", false)) {
+            return table;
+        }
+        this._consume_opening();
+
+        let row;
+        let data;
+        while (this._token_stream.peek().value === "TR") {
+            this._token_stream.next(); // TR are not expected to have a payload
+            this._token_stream.next();
+
+            row = [];
+            this._consume_opening();
+
+            while (this._token_stream.peek().value === "TD") {
+                this._token_stream.next(); // TD are not expected to have a payload
+                this._token_stream.next();
+
+                data = "";
+                while (
+                    this._token_stream.peek(false).type !== tokenizers.TagOpeningTokenizer.TYPE.TAG_CLOSING_OPENNING
+                ) {
+
+                    data += this._token_stream.next(false).value;
+                }
+
+                row.push(data);
+                this._consume_closing("TD");
+            }
+            table.rows.push(row);
+            this._consume_closing("TR");
+        }
+
+        this._consume_closing("TABLEDATA");
+        return table;
+    }
+
+    /**
+     * Helper function dedicated to parse a data tag.
+     * This helper assumes that the opening tag has been already consumed and the current token is a DATA identifier.
+     * returns an object representing a data tag and all of it's componant.
+     */
+    _parse_data() {
+        let data = this._parse_payload();
+        this._consume_opening();
+
+        if (this._token_stream.peek().value === "TABLEDATA") {
+            data.data = this._parse_table_data();
+        }
+
+        /**
+         * BINARY
+         */
+
+        /**
+         * BINARY2
+         */
+
+        /**
+         * FITS
+         */
+
+        this._consume_closing("DATA");
+        return data;
+    }
+
+    /**
+     * Helper function dedicated to parse a table tag.
+     * This helper assumes that the opening tag has been already consumed and the current token is a TABLE identifier.
+     * returns an object representing a table tag and all of it's componant.
+     */
+    _parse_table() {
+        let table = this._parse_payload();
+
+        // Note that a Table container can be empty. This is absurde but valid.
+        if (this._consume_closing("TABLE", false)) {
+            return table;
+        }
+        this._consume_opening();
+
+        if (this._token_stream.peek().value === "DESCRIPTION") {
+            table.description = this._parse_description();
+
+            if (this._consume_closing("TABLE", false)) {
+                return table;
+            }
+
+            this._consume_opening();
+        }
+
+        table.fields = [];
+        table.params = [];
+        table.groups = [];
+
+        while (
+            this._token_stream.peek().value === "FIELD" /*||
+            this._token_stream.peek().value === "PARAM" ||
+            this._token_stream.peek().value === "GROUP" */
+        ) {
+            if (this._token_stream.peek().value === "FIELD") {
+                table.fields.push(this._parse_field());
+            }
+
+            /**
+             * PARAM
+             * GROUP
+             */
+
+            if (this._consume_closing("TABLE", false)) {
+                return table;
+            }
+
+            this._consume_opening();
+        }
+
+        /**
+         * LINK
+         */
+
+        if (this._token_stream.peek().value === "DATA") {
+            table.data = this._parse_data();
+
+            if (this._consume_closing("TABLE", false)) {
+                return table;
+            }
+
+            this._consume_opening();
+        }
+
+        /**
+         * INFO
+         */
+        this._consume_closing("TABLE", false); // TODO : remove the false to raise an error.
+        return table;
+    }
+
+    /**
+     * Helper function dedicated to parse a ressource tag.
+     * This helper assumes that the opening tag has been already consumed and the current token is a RESSOURCE identifier.
+     * returns an object representing a ressource tag and all of it's componant.
      */
     _parse_resource() {
-        if (this._token_stream.peek().value !== "RESOURCE") {
-            this._throw(this._token_stream.next(), "a RESOURCE tag");
-        }
         let resource = this._parse_payload();
 
         // Note that a Ressource container can be empty. This is absurde but valid.
-        if (this._token_stream.peek().type === tokenizers.TagOpeningTokenizer.TYPE.TAG_CLOSING_OPENNING) {
-            this._token_stream.next();
-            if (this._token_stream.peek().value !== "RESOURCE") {
-                this._throw(this._token_stream.next(), "a closing RESOURCE tag");
-            }
+        if (this._consume_closing("RESOURCE", false)) {
             return resource;
         }
+        this._consume_opening();
+
+        if (this._token_stream.peek().value === "DESCRIPTION") {
+            resource.description = this._parse_description();
+
+            if (this._consume_closing("RESOURCE", false)) {
+                return resource;
+            }
+
+            this._consume_opening();
+        }
+
+        /**
+         * INFO
+         */
+
+        /**
+         * COOSYS
+         * TIMESYS
+         * PARAM
+         * GROUP
+         */
+
+        /**
+         * LINK
+         */
+        if (this._token_stream.peek().value === "TABLE") {
+            resource.table = this._parse_table();
+            if (this._consume_closing("RESOURCE", false)) {
+                return resource;
+            }
+
+            this._consume_opening();
+        }
+
+        // FIXME : recusive behavior inside a parser should be avoided.
+        if (this._token_stream.peek().value === "RESOURCE") {
+            resource.resource = this._parse_resource();
+        }
+
+        /**
+         * INFO
+         */
+
+        this._consume_closing("RESOURCE", false); // TODO : remove the false to raise an error.
         return resource;
     }
 
     _parse() {
         this._parse_init();
-        let tokens = [];
-        try {
-            while (!this._token_stream.eof()) {
-                tokens.push(this._token_stream.next());
-            }
-        } catch (e) {
-            console.error(e);
+        this._consume_opening();
+        if (this._token_stream.peek().value === "DESCRIPTION") {
+            this._internal.VoTable.description = this._parse_description();
+            this._consume_opening();
         }
-        return tokens;
+
+        /**
+         * COOSYS
+         * TIMESYS
+         * INFO
+         * PARAM
+         * GROUP
+         */
+
+        if (this._token_stream.peek().value !== "RESOURCE") {
+            this._throw(this._token_stream.next(), "a RESOURCE tag");
+        }
+
+        this._internal.VoTable.resources = [];
+        while (this._token_stream.peek().value === "RESOURCE") {
+            this._internal.VoTable.resources.push(this._parse_resource());
+            if (this._token_stream.peek().type === tokenizers.TagOpeningTokenizer.TYPE.TAG_CLOSING_OPENNING) {
+                break;
+            } else {
+                this._consume_opening();
+            }
+        }
+
+        /**
+         * INFO
+         */
+
+        this._consume_closing("VOTABLE");
     }
 
     //==#===#==// Generic helpers //==#===#==//
+
+    /**
+     * Helper function that simply check if the next token is a simple tag opening and consume it if so.
+     * If the token is anything esle this helper will throw an error.
+     */
+    _consume_opening() {
+        if (this._token_stream.peek().type !== tokenizers.TagOpeningTokenizer.TYPE.TAG_OPENNING) {
+            this._throw(this._token_stream.next(), "an opening tag");
+        }
+        this._token_stream.next();
+    }
+
+    /**
+     * Helper function that handles the consumption of ending tokens
+     * @param {string} expected The expected identifier to close. if null any identifier will be accepted
+     * @param {boolean} raising Wheter or not this method should rase an error if a closig tag isn't found.
+     * @returns true if the ending got correctly consumed, false otherwise.
+     */
+    _consume_closing(expected, raising = true) {
+        if (this._token_stream.peek().type === tokenizers.TagOpeningTokenizer.TYPE.TAG_CLOSING_OPENNING) {
+            this._token_stream.next();
+            if (this._token_stream.peek().value !== expected && expected !== null) {
+                this._throw(this._token_stream.next(), "a closing " + expected + " tag");
+            }
+            this._token_stream.next();
+            if (this._token_stream.peek().type !== tokenizers.TagClosingTokenizer.TYPE.TAG_CLOSING) {
+                this._throw(this._token_stream.next(), "a closing tag (>)");
+            }
+            this._token_stream.next();
+            return true;
+        } else if (raising) {
+            this._throw(this._token_stream.next(), "a closing tag");
+        }
+        return false;
+    }
 
     /**
      * Helper function that build an error message an then throw an {@link UnexpectedTokenError}
