@@ -113,6 +113,11 @@ class VoTableParser {
         return data;
     }
 
+    /**
+     * Helper function dedicated to parse a description tag.
+     * This helper assumes that the opening tag has been already consumed and the current token is a DESCRIPTION identifier.
+     * returns an object representing a description tag and all of it's componant.
+     */
     _parse_description() {
         let data = this._parse_payload();
         data.content = "";
@@ -123,6 +128,11 @@ class VoTableParser {
         return data;
     }
 
+    /**
+     * Helper function dedicated to parse a field tag.
+     * This helper assumes that the opening tag has been already consumed and the current token is a FIELD identifier.
+     * returns an object representing a field tag and all of it's componant.
+     */
     _parse_field() {
         let field = this._parse_payload();
 
@@ -154,6 +164,11 @@ class VoTableParser {
         return field;
     }
 
+    /**
+     * Helper function dedicated to parse a table data tag.
+     * This helper assumes that the opening tag has been already consumed and the current token is a TABLEDATA identifier.
+     * returns an object representing a table data tag and all of it's componant.
+     */
     _parse_table_data() {
         let table = this._parse_payload();
 
@@ -197,6 +212,11 @@ class VoTableParser {
         return table;
     }
 
+    /**
+     * Helper function dedicated to parse a data tag.
+     * This helper assumes that the opening tag has been already consumed and the current token is a DATA identifier.
+     * returns an object representing a data tag and all of it's componant.
+     */
     _parse_data() {
         let data = this._parse_payload();
         this._consume_opening();
@@ -221,6 +241,11 @@ class VoTableParser {
         return data;
     }
 
+    /**
+     * Helper function dedicated to parse a table tag.
+     * This helper assumes that the opening tag has been already consumed and the current token is a TABLE identifier.
+     * returns an object representing a table tag and all of it's componant.
+     */
     _parse_table() {
         let table = this._parse_payload();
 
@@ -287,7 +312,9 @@ class VoTableParser {
     }
 
     /**
-     * Helper function dedicated to parse a single ressource tag
+     * Helper function dedicated to parse a ressource tag.
+     * This helper assumes that the opening tag has been already consumed and the current token is a RESSOURCE identifier.
+     * returns an object representing a ressource tag and all of it's componant.
      */
     _parse_resource() {
         let resource = this._parse_payload();
