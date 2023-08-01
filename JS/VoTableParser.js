@@ -1,6 +1,7 @@
 const tokenizers = require("./tokenizers");
 const {TokenStream} = require("./TokenStream");
 const CharStream = require("./CharStream");
+const table = require("text-table");
 
 class UnexpectedTokenError extends Error {}
 
@@ -152,6 +153,71 @@ class VoTableParser {
 
         this._consume_closing("FIELD");
         return field;
+    }
+
+    _parse_table_data() {
+        let table = this._parse_payload();
+
+        table.rows = [];
+
+        // Note that a Tabledata container can be empty. This is for once logic.
+        if (this._consume_closing("TABLEDATA", false)) {
+            return table;
+        }
+        this._consume_opening();
+
+        let row;
+        let data;
+        while (this._token_stream.peek().value === "TR") {
+            this._token_stream.next();
+
+            row = [];
+            this._consume_opening();
+
+            while (this._token_stream.peek().value === "TD") {
+                this._token_stream.next();
+
+                data = "";
+                while (
+                    this._token_stream.peek(false).type !== tokenizers.TagOpeningTokenizer.TYPE.TAG_CLOSING_OPENNING
+                ) {
+
+                    data += this._token_stream.next(false).value;
+                }
+
+                row.push(data);
+                this._consume_closing("TD");
+            }
+            table.rows.push(row);
+            this._consume_closing("TR");
+        }
+
+        this._consume_closing("TABLEDATA");
+        return table;
+    }
+
+    _parse_data() {
+        let data = this._parse_payload();
+        this._consume_opening();
+
+        if (this._token_stream.peek().value === "TABLEDATA") {
+            data.data = this._parse_table_data();
+        }
+
+        /**
+         * BINARY
+         */
+
+        /**
+         * BINARY2
+         */
+
+        /**
+         * FITS
+         */
+
+        this._consume_closing("DATA");
+        return data;
     }
 
     _parse_table() {
