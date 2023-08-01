@@ -128,6 +128,46 @@ class VoTableParser {
         return data;
     }
 
+    _parse_table() {
+        let table = this._parse_payload();
+
+        // Note that a Table container can be empty. This is absurde but valid.
+        if (this._consume_closing("TABLE", false)) {
+            return table;
+        }
+        this._consume_opening();
+
+        if (this._token_stream.peek().value === "DESCRIPTION") {
+            table.description = this._parse_description();
+
+            if (this._consume_closing("TABLE", false)) {
+                return table;
+            }
+
+            this._consume_opening();
+        }
+
+        /**
+         * FIELD
+         * PARAM
+         * GROUP
+         */
+
+        /**
+         * LINK
+         */
+
+        /**
+         * DATA
+         */
+
+        /**
+         * INFO
+         */
+        this._consume_closing("TABLE", false); // TODO : remove the false to raise an error.
+        return table;
+    }
+
     /**
      * Helper function dedicated to parse a single ressource tag
      */
@@ -138,7 +178,7 @@ class VoTableParser {
         if (this._consume_closing("RESOURCE", false)) {
             return resource;
         }
-        // this._consume_opening();
+        this._consume_opening();
 
         if (this._token_stream.peek().value === "DESCRIPTION") {
             resource.description = this._parse_description();
@@ -164,9 +204,14 @@ class VoTableParser {
         /**
          * LINK
          */
-        /**
-         * TABLE
-         */
+        if (this._token_stream.peek().value === "TABLE") {
+            resource.table = this._parse_table();
+            if (this._consume_closing("RESOURCE", false)) {
+                return resource;
+            }
+
+            this._consume_opening();
+        }
 
         // FIXME : recusive behavior inside a parser should be avoided.
         if (this._token_stream.peek().value === "RESOURCE") {
