@@ -119,13 +119,39 @@ class VoTableParser {
         while (this._token_stream.peek(false).type !== tokenizers.TagOpeningTokenizer.TYPE.TAG_CLOSING_OPENNING) {
             data.content += this._token_stream.next(false).value;
         }
-        this._token_stream.next();
-        if (this._token_stream.peek().value !== "DESCRIPTION") {
-            this._throw(this._token_stream.next(), "a clossing DESCRIPTION tag");
-        }
-        this._token_stream.next();
-        this._token_stream.next();
+        this._consume_closing("DESCRIPTION");
         return data;
+    }
+
+    _parse_field() {
+        let field = this._parse_payload();
+
+        // Note that a Field container can be empty. This is absurde but valid.
+        if (this._consume_closing("FIELD", false)) {
+            return field;
+        }
+        this._consume_opening();
+
+        if (this._token_stream.peek().value === "DESCRIPTION") {
+            field.description = this._parse_description();
+
+            if (this._consume_closing("FIELD", false)) {
+                return field;
+            }
+
+            this._consume_opening();
+        }
+
+        /**
+         * VALUES
+         */
+
+        /**
+         * LINK
+         */
+
+        this._consume_closing("FIELD");
+        return field;
     }
 
     _parse_table() {
@@ -147,11 +173,30 @@ class VoTableParser {
             this._consume_opening();
         }
 
-        /**
-         * FIELD
-         * PARAM
-         * GROUP
-         */
+        table.fields = [];
+        table.params = [];
+        table.groups = [];
+
+        while (
+            this._token_stream.peek().value === "FIELD" /*||
+            this._token_stream.peek().value === "PARAM" ||
+            this._token_stream.peek().value === "GROUP" */
+        ) {
+            if (this._token_stream.peek().value === "FIELD") {
+                table.fields.push(this._parse_field());
+            }
+
+            /**
+             * PARAM
+             * GROUP
+             */
+
+            if (this._consume_closing("TABLE", false)) {
+                return table;
+            }
+
+            // this._consume_opening();
+        }
 
         /**
          * LINK
@@ -210,7 +255,7 @@ class VoTableParser {
                 return resource;
             }
 
-            this._consume_opening();
+            // this._consume_opening();
         }
 
         // FIXME : recusive behavior inside a parser should be avoided.
@@ -291,7 +336,10 @@ class VoTableParser {
             this._token_stream.next();
             if (this._token_stream.peek().value !== expected && expected !== null) {
                 this._throw(this._token_stream.next(), "a closing " + expected + " tag");
-                return false;
+            }
+            this._token_stream.next();
+            if (this._token_stream.peek().type !== tokenizers.TagClosingTokenizer.TYPE.TAG_CLOSING) {
+                this._throw(this._token_stream.next(), "a closing tag (>)");
             }
             this._token_stream.next();
             return true;
