@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "types": ["node", "jest"],
+    "module": "commonjs",
+    "rootDir": "..",
+    "strict": true,
+    "noImplicitAny": true,
+    "esModuleInterop": true
+  },
+  "exclude": ["node_modules", "src"]
+}
