@@ -1,4 +1,4 @@
-class CharStream {
+export default class CharStream {
   private readonly VALUE: string;
   private index: number;
   private line: number;
@@ -71,5 +71,3 @@ class CharStream {
     return this.column;
   }
 }
-
-module.exports = CharStream;
