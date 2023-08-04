@@ -33,7 +33,5 @@
     "project": ["./tsconfig.json"]
   },
   "plugins": ["@typescript-eslint"],
-  "rules": {
-    "@typescript-eslint/prefer-readonly-parameter-types": "off"
-  }
+  "rules": {}
 }

@@ -5,8 +5,7 @@ export interface Token {
   type: string;
 }
 
-// abstract class definition
-abstract class Tokenizer {
+export abstract class Tokenizer {
   protected readonly TYPE: string;
 
   /**
@@ -64,4 +63,19 @@ abstract class Tokenizer {
   }
 }
 
-module.exports = Tokenizer;
+/**
+ * This class is more versatile version of the {@see Tokenizer} but does come at the cost of computational time.
+ */
+export abstract class StatefulTokenizer extends Tokenizer {
+  public constructor() {
+    super("");
+  }
+
+  protected abstract getType(): string;
+
+  public override tokenize(char_stream: CharStream): Token {
+    const TOKEN: Token = super.tokenize(char_stream);
+    TOKEN.type = this.getType();
+    return TOKEN;
+  }
+}
