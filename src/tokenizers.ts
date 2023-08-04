@@ -5,7 +5,7 @@ export class StringTokenizer extends Tokenizer {
   protected readonly QUOTE: string;
   public static type: string = "string";
 
-  public constructor(quote: string = "'") {
+  public constructor(quote: string) {
     super(StringTokenizer.type);
     this.QUOTE = quote;
   }
@@ -111,6 +111,13 @@ export class OperatorTokenizer extends Tokenizer {
   public override canTokenize(char: string): boolean {
     return char === "=";
   }
+
+  public override tokenize(char_stream: CharStream): Token {
+    return {
+      value: char_stream.next() as string,
+      type: this.TYPE
+    };
+  }
 }
 
 export class NumberTokenizer extends StatefulTokenizer {
@@ -129,6 +136,7 @@ export class NumberTokenizer extends StatefulTokenizer {
   }
 
   public override canTokenize(char: string): boolean {
+    this.isFloat = false;
     return char >= "0" && char <= "9";
   }
 
@@ -136,7 +144,7 @@ export class NumberTokenizer extends StatefulTokenizer {
     // small trickery here : JS has boolean optimization meaning that the statement (this.isFloat = true)
     // will only be interpreted at the first encounter of a "."
     return (
-      this.canTokenize(char) ||
+      (char >= "0" && char <= "9") ||
       (char === "." && !this.isFloat && (this.isFloat = true))
     );
   }
@@ -157,6 +165,8 @@ export class TagOpeningTokenizer extends StatefulTokenizer {
   }
 
   public override canTokenize(char: string): boolean {
+    this.length = 0;
+    this.isClosing = false;
     return char === "<";
   }
 
@@ -165,7 +175,7 @@ export class TagOpeningTokenizer extends StatefulTokenizer {
     // small trickery here : JS has boolean optimization meaning that the statement (this.isClosing = true)
     // will only be interpreted at the first encounter of a "/"
     return (
-      (this.canTokenize(char) && this.length < 2) ||
+      (char === "<" && this.length < 2) ||
       (char === "/" && this.length < 3 && (this.isClosing = true))
     );
   }
